@@ -34,4 +34,14 @@ By default, the stack exposes the following ports:
 9300: Elasticsearch TCP nodes communication
 
 5601: Kibana web UI
+![image](https://user-images.githubusercontent.com/43083820/174087982-3ab08c1e-5c52-4743-a1c2-af80a1c82d14.png)
 
+Shipping data to ELK Stack
+Kibana has its own API for saved objects, including Index Patterns. The following examples are for an Index Pattern with an ID of logstash-*.
+
+$ curl -XPOST -D- 'http://localhost:5601/api/saved_objects/index-pattern' \
+ -H 'Content-Type: application/json' \
+ -H 'kbn-version: 6.5.1' \
+ -d '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
+ 
+ 
